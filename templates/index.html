@@ -7,16 +7,24 @@
 <body>
     <div class="container mt-5">
         <h1>My To-Do App</h1>
-        <form method="POST" action="/add">
+        <form method="POST" action="/add" class="mb-4">
             <div class="mb-3">
-                <input type="text" name="task" class="form-control" placeholder="Finish coding project" required>
+                <input type="text" name="task" class="form-control" placeholder="Enter a task" required>
             </div>
             <button type="submit" class="btn btn-primary">Add Task</button>
         </form>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Sample Task 1</li>
-            <li class="list-group-item">Sample Task 2</li>
-        </ul>
+        <h3>Tasks</h3>
+        {% if tasks %}
+            <ul class="list-group">
+                {% for task in tasks %}
+                    <li class="list-group-item">
+                        {{ task[1] }} (Priority: {{ task[2] }}, Added: {{ task[3] }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No tasks yet.</p>
+        {% endif %}
     </div>
 </body>
 </html>
